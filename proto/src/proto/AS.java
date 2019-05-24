@@ -12,28 +12,33 @@ public class AS {
 	private Article data = null;
 	
 	public AS(ArrayList<String> key) {
-		String url = "https://as.com/futbol/"; // °Ë»öÇÒ Á¤º¸°¡ ÀÖ´Â key ArrayList
-		data = new Article();
-
-
-		// °¡Á®¿À°í ½ÍÀº Á¤º¸°¡ ÀÖ´Â À¥ÆäÀÌÁöÀÇ url
+		String url = "https://as.com/futbol/"; // ì°¾ìœ¼ë ¤ê³  í•˜ëŠ” ì›¹í˜ì´ì§€ì˜ url ì…ë ¥
+		
+		//urlì„ ë‹´ì„ document
 		Document doc = null;
 
 		try {
-			doc = Jsoup.connect(url).execute().parse(); // Document¿¡ url ÆäÀÌÁöÀÇ µ¥ÀÌÅÍ¸¦ °¡Á®¿Â´Ù.
+			//Jsoupì— url ë„£ê¸°
+			doc = Jsoup.connect(url).execute().parse();
 		}
 
 		catch (IOException e) {
 			e.printStackTrace();
 		}
 
-		for (Element el : doc.select("div.pntc-content")) { // Elements zl =
+		//div íƒœê·¸ì˜  pntc-content í´ë˜ìŠ¤ ê°€ì ¸ì˜¤ê¸°
+		for (Element el : doc.select("div.pntc-content")) { 
+			//h2íƒœê·¸ì˜ titleí´ë˜ìŠ¤ (ê¸°ì‚¬ì˜ ì œëª©)
 			el.select("h2.title");
+			//ì œëª©ì— ì°¾ìœ¼ë ¤ëŠ” í‚¤ì›Œë“œê°€ ìˆì„ê²½ìš°
 			for (int i = 0; i < key.size(); i++) {
 				if ((el.select("a").text().contains(key.get(i).toLowerCase()))) {
+					//ê¸°ì‚¬ ì œëª©
 					data.setHeadline(el.select("h2 a").text());
+					//ê¸°ì‚¬ url
 					Elements elUrl = el.select("h2 a");
 					data.setUrl(elUrl.first().absUrl("href"));
+					//ê¸°ì‚¬ ë‚ ì§œ
 					String temp = el.select("div p a .fecha").text();
 					data.setDate(changeDate(temp));
 					data.setSite("AS");
@@ -42,6 +47,7 @@ public class AS {
 		}
 	}
 
+	//YYMMDD í˜•ì‹ ë§ì¶°ì£¼ê¸°
 	public int changeDate(String date) {
 		int formdate = 0;
 		String sp[] = date.split("/");

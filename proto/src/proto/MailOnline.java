@@ -11,31 +11,32 @@ public class MailOnline {
    private Article data = null;
 	
    public MailOnline(ArrayList<String> key) {
+	   
+	   data = new Article();
+	   
+	  //url ê°€ì ¸ì˜¤ê¸°
       String url = "https://www.dailymail.co.uk/home/search.html?offset=0&size=50&sel=site&searchPhrase=";
-      data = new Article();
-
-
       url += key.get(0).toLowerCase();
-      
       for(int i=1;i<key.size();i++) {
          url += "+"+key.get(i).toLowerCase();
-         
       }
       url += "&sort=recent&type=article&days=all";
       
-      // °¡Á®¿À°í ½ÍÀº Á¤º¸°¡ ÀÖ´Â À¥ÆäÀÌÁöÀÇ url
+      
       Document doc = null;
       try {
-         doc = Jsoup.connect(url).get(); // Document¿¡ url ÆäÀÌÁöÀÇ µ¥ÀÌÅÍ¸¦ °¡Á®¿Â´Ù.
+         doc = Jsoup.connect(url).get();
       } catch (IOException e) {
          e.printStackTrace();
       }
-
+      //divíƒœê·¸ì— sch-result í´ëž˜ìŠ¤ ê°€ì ¸ì˜¤ê¸°
       for (Element el : doc.select("div .sch-result")) {
-
+    	 //h3íƒœê·¸ì˜ aíƒœê·¸
          data.setHeadline(el.select("h3 a").text());
+          //h3íƒœê·¸ì˜ aíƒœê·¸
          Elements elUrl = el.select("h3 a");
          data.setUrl(elUrl.first().absUrl("href"));
+         //h4íƒœê·¸
          String temp = el.select("h4").text();
          data.setDate(changeDate(temp));
          data.setSite("MailOnline");
