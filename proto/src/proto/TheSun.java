@@ -12,7 +12,7 @@ import org.jsoup.select.Elements;
 public class TheSun {
 
 	private Article data = null;
-
+	//생성자를 통해 인스턴스 생성과 동시에 크롤링 시작. 크롤링이 완료된 후 데이터를 아티클 인스턴스에 저장
 	public TheSun(ArrayList<String> key) {
 		data = new Article();
 		String url = "https://www.thesun.co.uk/?s=";
@@ -30,7 +30,7 @@ public class TheSun {
 			element = doc.select("div.search-results-wrap");
 
 			for (Element el : element.select(".teaser-item")) {
-
+				//적절한 css선택자를 통해 html에서 원하는 정보를 가져옴. 키워드와 비교해 적절한 데이터를 저장
 				if (el.select("p").text().toLowerCase().contains(key.get(i).toLowerCase())) {
 					data.setHeadline(el.select("p").text());
 					Elements elUrl = el.select(".teaser__copy-container a");
@@ -44,13 +44,6 @@ public class TheSun {
 			url = "https://www.thesun.co.uk/?s=";
 		}
 
-		for (int i = 0; i < data.getHowManyData(); i++) {
-			System.out.println(data.getDate(i));
-			System.out.println(data.getHeadline(i));
-			System.out.println(data.getUrl(i));
-			System.out.println(data.getSite(i));
-
-		}
 	}
 
 	public int changeDate(String date) {
@@ -101,7 +94,7 @@ public class TheSun {
 
 		return formdate;
 	}
-	
+	//Article 인스턴스를 위한 getter
 	public Article getArticle() {
 		return data;
 	}

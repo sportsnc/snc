@@ -14,6 +14,7 @@ public class SkySports {
 
 	private Article data = null;
 
+             //생성자를 통해 생성과 동시에 크롤링을 시작해 데이터를 아티클 인스턴스에 저장
 	public SkySports(ArrayList<String> key) throws Exception {
 		String url = "https://www.skysports.com/search?q=";
 
@@ -25,7 +26,7 @@ public class SkySports {
 		for (int i = 0; i < key.size(); i++) {
 			String urlTmp = url + key.get(i);
 			doc = Jsoup.connect(urlTmp).execute().parse(); // Document에 url 페이지의 데이터를 가져온다.
-
+			// css선택자를 이용해 html에서 원하는 정보를 선택.
 			element = doc.select("div.news-list");
 			for (Element el : element.select("div.news-list__item")) {
 				if (el.select("h4").select("a").text().toLowerCase().contains(key.get(i).toLowerCase())) {
@@ -114,7 +115,7 @@ public class SkySports {
 		return formdate;
 
 	}
-
+	//getter method for Article
 	public Article getArticle() {
 		return data;
 	}

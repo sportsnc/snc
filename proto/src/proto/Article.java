@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Article {
 
    public Article() {
+      // 생성자를 통해 인스턴스 생성시 어레이리스트 인스턴스 생성
       date = new ArrayList<Integer>();
       Headline = new ArrayList<String>();
       Url = new ArrayList<String>();
@@ -16,6 +17,7 @@ public class Article {
    private ArrayList<String> Url;
    private ArrayList<String> Site;
 
+   //setter methods
    public void setDate(int num) {
       date.add(num);
    }
@@ -32,10 +34,13 @@ public class Article {
       Site.add(site);
    }
 
+
+   //몇개의 기사가 저장되어있는지 알려줌
    public int getHowManyData() {
       return Headline.size();
    }
 
+   //getter methods
    public int getDate(int num) {
       return date.get(num);
    }
