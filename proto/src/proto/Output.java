@@ -24,7 +24,7 @@ public class Output extends JFrame implements ActionListener {
 	
 	public Output(String words) throws Exception {
 		
-		
+		// parsing by comma keyword you entered
 		ArrayList<String> keywords = new ArrayList<String>();
 		StringTokenizer s = new StringTokenizer(words);  
 		while(s.hasMoreTokens()) {             	
@@ -32,7 +32,7 @@ public class Output extends JFrame implements ActionListener {
 		}  
 		
 		trs = new Transmission(keywords);
-        String []index = {"Date", "Site", "Headline", "Url"};
+        String []index = {"Date", "Site", "Headline", "Url"};	// Set table entities suitable
         String [][]cont = new String[100][100];
        
         for(int i=0 ; i < trs.getArt().getHowManyData() ; i++) {
@@ -44,7 +44,6 @@ public class Output extends JFrame implements ActionListener {
         	}
         }
         
-      // test: System.out.println(art1.getDate(0));
 		setTitle("Search result");
 		setSize(1200,800);
 		
@@ -59,7 +58,7 @@ public class Output extends JFrame implements ActionListener {
 		JTable table = new JTable(model);
 
         
-        // 컬럼의 속성 셋팅 
+        // set detail attributes of column sizes
         table.getColumnModel().getColumn(0).setMaxWidth(200); 
         table.getColumnModel().getColumn(0).setMinWidth(100); 
         table.getColumnModel().getColumn(0).setWidth(80); 
@@ -106,6 +105,7 @@ public class Output extends JFrame implements ActionListener {
 		add(p1);
 	}
 	
+	// when you click the 'Back' button, you can re-search keyword at first view
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(reset)) {
 			dispose();

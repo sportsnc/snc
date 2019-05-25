@@ -24,7 +24,7 @@ public class UI extends JFrame implements ActionListener  {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 		
-		setLayout(new BorderLayout(2,0));
+		setLayout(new BorderLayout(2,0));		// set appropriate layout
 		
 		JPanel p0 = new JPanel();
 		JPanel p1 = new JPanel();
@@ -47,7 +47,7 @@ public class UI extends JFrame implements ActionListener  {
 
 	}
 	
-public void actionPerformed(ActionEvent e) {
+public void actionPerformed(ActionEvent e) {	// set action when you click "Search" button
 		if (e.getSource().equals(jbtOk)) {
 			// keyword parsing //
 			String input = new String(keyword.getText());
@@ -57,7 +57,7 @@ public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-            keyword.setText("");
+            keyword.setText("");	// set textfield after you click the button.
               
 		} else if (e.getSource().equals(jbtCancel)) {
 			System.exit(0);
