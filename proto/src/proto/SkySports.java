@@ -10,11 +10,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-public class SkySports {
+public class SkySports extends Crawler {
 
-	private Article data = null;
-
-             //생성자를 통해 생성과 동시에 크롤링을 시작해 데이터를 아티클 인스턴스에 저장
 	public SkySports(ArrayList<String> key) throws Exception {
 		String url = "https://www.skysports.com/search?q=";
 
@@ -115,8 +112,5 @@ public class SkySports {
 		return formdate;
 
 	}
-	//getter method for Article
-	public Article getArticle() {
-		return data;
-	}
+
 }

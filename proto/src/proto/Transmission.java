@@ -16,7 +16,7 @@ public class Transmission {
 		thesunArticle = new TheSun(key);
 		AsArticle = new AS(key);
 		SSArticle = new SkySports(key);
-		MoArticle = new MailOnline(key);
+		//MoArticle = new MailOnline(key);
 		BBCArticle = new BBC(key);
 
 		//크롤링된 데이터를 Transmission에서 생성한 아티클 객체에 저장
@@ -40,12 +40,12 @@ public class Transmission {
 			data.setUrl(SSArticle.getArticle().getUrl(i));
 			data.setSite(SSArticle.getArticle().getSite(i));
 		}
-		for (int i = 0; i < MoArticle.getArticle().getHowManyData(); i++) {
-			data.setDate(MoArticle.getArticle().getDate(i));
-			data.setHeadline(MoArticle.getArticle().getHeadline(i));
-			data.setUrl(MoArticle.getArticle().getUrl(i));
-			data.setSite(MoArticle.getArticle().getSite(i));
-		}
+//		for (int i = 0; i < MoArticle.getArticle().getHowManyData(); i++) {
+//			data.setDate(MoArticle.getArticle().getDate(i));
+//			data.setHeadline(MoArticle.getArticle().getHeadline(i));
+//			data.setUrl(MoArticle.getArticle().getUrl(i));
+//			data.setSite(MoArticle.getArticle().getSite(i));
+//		}
 		for (int i = 0; i < BBCArticle.getArticle().getHowManyData(); i++) {
 			data.setDate(BBCArticle.getArticle().getDate(i));
 			data.setHeadline(BBCArticle.getArticle().getHeadline(i));

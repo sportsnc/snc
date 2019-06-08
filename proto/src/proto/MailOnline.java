@@ -14,7 +14,7 @@ public class MailOnline {
 	   
 	   data = new Article();
 	   
-	  //url 가져오기
+	  //url 媛��졇�삤湲�
       String url = "https://www.dailymail.co.uk/home/search.html?offset=0&size=50&sel=site&searchPhrase=";
       url += key.get(0).toLowerCase();
       for(int i=1;i<key.size();i++) {
@@ -29,14 +29,14 @@ public class MailOnline {
       } catch (IOException e) {
          e.printStackTrace();
       }
-      //div태그에 sch-result 클래스 가져오기
+      //div�깭洹몄뿉 sch-result �겢�옒�뒪 媛��졇�삤湲�
       for (Element el : doc.select("div .sch-result")) {
-    	 //h3태그의 a태그
+    	 //h3�깭洹몄쓽 a�깭洹�
          data.setHeadline(el.select("h3 a").text());
-          //h3태그의 a태그
+          //h3�깭洹몄쓽 a�깭洹�
          Elements elUrl = el.select("h3 a");
          data.setUrl(elUrl.first().absUrl("href"));
-         //h4태그
+         //h4�깭洹�
          String temp = el.select("h4").text();
          data.setDate(changeDate(temp));
          data.setSite("MailOnline");
@@ -44,12 +44,12 @@ public class MailOnline {
       }
       }
 
-      public static int changeDate(String date) {
+      public int changeDate(String date) {
       int formdate = 0;
       String sp[] = date.split("-");
       
       String sp_r[] = sp[1].split(" ");
-      
+      System.out.println(sp_r[3]);
       formdate += Integer.parseInt(sp_r[3].substring(2,4))* 10000;
       switch (sp_r[1]) {
       case "January":

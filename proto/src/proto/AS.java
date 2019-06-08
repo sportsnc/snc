@@ -8,17 +8,17 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-public class AS {
-	private Article data = null;
+public class AS extends Crawler{
 	
 	public AS(ArrayList<String> key) {
-		String url = "https://as.com/futbol/"; // 찾으려고 하는 웹페이지의 url 입력
+		data = new Article();
+		String url = "https://as.com/futbol/"; // 李얠쑝�젮怨� �븯�뒗 �쎒�럹�씠吏��쓽 url �엯�젰
 		
-		//url을 담을 document
+		//url�쓣 �떞�쓣 document
 		Document doc = null;
 
 		try {
-			//Jsoup에 url 넣기
+			//Jsoup�뿉 url �꽔湲�
 			doc = Jsoup.connect(url).execute().parse();
 		}
 
@@ -26,19 +26,19 @@ public class AS {
 			e.printStackTrace();
 		}
 
-		//div 태그의  pntc-content 클래스 가져오기
+		//div �깭洹몄쓽  pntc-content �겢�옒�뒪 媛��졇�삤湲�
 		for (Element el : doc.select("div.pntc-content")) { 
-			//h2태그의 title클래스 (기사의 제목)
+			//h2�깭洹몄쓽 title�겢�옒�뒪 (湲곗궗�쓽 �젣紐�)
 			el.select("h2.title");
-			//제목에 찾으려는 키워드가 있을경우
+			//�젣紐⑹뿉 李얠쑝�젮�뒗 �궎�썙�뱶媛� �엳�쓣寃쎌슦
 			for (int i = 0; i < key.size(); i++) {
 				if ((el.select("a").text().contains(key.get(i).toLowerCase()))) {
-					//기사 제목
+					//湲곗궗 �젣紐�
 					data.setHeadline(el.select("h2 a").text());
-					//기사 url
+					//湲곗궗 url
 					Elements elUrl = el.select("h2 a");
 					data.setUrl(elUrl.first().absUrl("href"));
-					//기사 날짜
+					//湲곗궗 �궇吏�
 					String temp = el.select("div p a .fecha").text();
 					data.setDate(changeDate(temp));
 					data.setSite("AS");
@@ -47,7 +47,7 @@ public class AS {
 		}
 	}
 
-	//YYMMDD 형식 맞춰주기
+	//YYMMDD �삎�떇 留욎떠二쇨린
 	public int changeDate(String date) {
 		int formdate = 0;
 		String sp[] = date.split("/");
@@ -57,7 +57,5 @@ public class AS {
 
 		return formdate;
 	}
-	public Article getArticle() {
-		return data;
-	}
+
 }

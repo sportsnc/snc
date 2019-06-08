@@ -9,9 +9,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-public class TheSun {
+class TheSun extends Crawler {
 
-	private Article data = null;
 	//생성자를 통해 인스턴스 생성과 동시에 크롤링 시작. 크롤링이 완료된 후 데이터를 아티클 인스턴스에 저장
 	public TheSun(ArrayList<String> key) {
 		data = new Article();
@@ -94,8 +93,5 @@ public class TheSun {
 
 		return formdate;
 	}
-	//Article 인스턴스를 위한 getter
-	public Article getArticle() {
-		return data;
-	}
+
 }
