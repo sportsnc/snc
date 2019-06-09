@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Transmission {
 	//크롤링 모듈들
 	private Article data = new Article();
-	private Crawler[] crawling = {null, null, null, null, null};
+	private Crawler[] crawling = {null, null, null, null, null, null};
 	//생성자를 통해 각 크롤링 모듈의 인스턴스 생성. 크롤링 모듈들은 인스턴스 생성과 동시에 생성자를 통해 크롤링 시작
 	public Transmission(ArrayList<String> key, ArrayList<String> whichSite, int sort) throws Exception {
 		
@@ -25,6 +25,9 @@ public class Transmission {
 				break;
 			case "MailOnline":
 				crawling[i] = new MailOnline(key);
+				break;
+			case "NBCSports":
+				crawling[i] = new NBCSports(key);
 				break;
 			}
 		}

@@ -16,8 +16,8 @@ public class UI extends JFrame implements ActionListener  {
    private JButton jbtCancel = new JButton("Exit");
    JTextField keyword = new JTextField(16);
    private ImageIcon logoIcon = new ImageIcon("src/image/logo.png");
-   private JCheckBox[] artBox = new JCheckBox[5];
-   String[] siteName = {"AS", "BBC", "MailOnline", "SkySports", "TheSun"};
+   private JCheckBox[] artBox = new JCheckBox[6];
+   String[] siteName = {"AS", "BBC", "MailOnline", "SkySports", "TheSun", "NBCsports"};
    private JCheckBox sortBox = new JCheckBox("sort by Date");
    public ArrayList<String> MySites = new ArrayList<String>();
    public int sort = 0;
@@ -25,7 +25,7 @@ public class UI extends JFrame implements ActionListener  {
    public UI() {
       // display first UI view //
       setTitle("Sports News Crawler");
-      setSize(400,380);
+      setSize(500,380);
       setLocationRelativeTo(null);
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       setVisible(true);
@@ -98,6 +98,9 @@ public class UI extends JFrame implements ActionListener  {
             else if(e.getItem()==artBox[4]) {
                MySites.add("TheSun");
             }
+            else if(e.getItem()==artBox[5]) {
+                MySites.add("NBCSports");
+             }
          }      
             if(e.getStateChange()==ItemEvent.DESELECTED) {
                
