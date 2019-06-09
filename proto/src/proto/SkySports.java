@@ -12,7 +12,7 @@ import org.jsoup.select.Elements;
 
 public class SkySports extends Crawler {
 
-	public SkySports(ArrayList<String> key) throws Exception {
+	public SkySports(ArrayList<String> key) {
 		String url = "https://www.skysports.com/search?q=";
 
 		data = new Article();
@@ -22,7 +22,11 @@ public class SkySports extends Crawler {
 
 		for (int i = 0; i < key.size(); i++) {
 			String urlTmp = url + key.get(i);
-			doc = Jsoup.connect(urlTmp).execute().parse(); // Document에 url 페이지의 데이터를 가져온다.
+			try {
+				doc = Jsoup.connect(urlTmp).get(); // Document에 url 페이지의 데이터를 가져온다.
+			} catch (IOException e) {
+				e.printStackTrace();
+			} // Document에 url 페이지의 데이터를 가져온다.
 			// css선택자를 이용해 html에서 원하는 정보를 선택.
 			element = doc.select("div.news-list");
 			for (Element el : element.select("div.news-list__item")) {

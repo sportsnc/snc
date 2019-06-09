@@ -12,7 +12,7 @@ import org.jsoup.select.Elements;
 
 public class BBC extends Crawler {
 
-	public BBC(ArrayList<String> key) throws Exception {
+	public BBC(ArrayList<String> key) {
 		// 李얠쑝�젮怨� �븯�뒗 �쎒�럹�씠吏��쓽 url �엯�젰
 		String url = "https://www.bbc.co.uk/search?q=";
 		data = new Article();

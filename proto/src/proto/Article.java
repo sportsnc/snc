@@ -55,4 +55,20 @@ public class Article {
    public String getSite(int num) {
       return Site.get(num);
    }
+   
+   public void sortFn() {
+		int best = 0;
+		int tmp = 0;
+		for(int i = 0; i < Headline.size(); i++) {
+			best = date.get(i);
+			for(int j = i; j < Headline.size(); j++) {
+				if (date.get(j) > best) {
+					best =  date.get(j);
+					tmp = date.get(i);
+					date.set(i, date.get(j));
+					date.set(j, tmp);
+				}
+			}
+		}
+	}
 }
