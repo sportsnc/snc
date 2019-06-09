@@ -119,6 +119,9 @@ public class UI extends JFrame implements ActionListener  {
                else if(e.getItem()==artBox[4]) {
                   MySites.remove("TheSun");
                }
+               else if(e.getItem()==artBox[5]) {
+                   MySites.add("NBCSports");
+               }
             }
       }   
       
